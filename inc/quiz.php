@@ -15,9 +15,12 @@ include("questions.php");
 $index=2;
 // Make a variable to hold the current question. Assign null to it.
 $question=$questions[$index];
-echo "<pre>";
-var_dump($question);
+echo "<pre>"; 
+// var_dump($question);
 echo "</pre>";
+
+$answers=array($question["correctAnswer"],$question["firstIncorrectAnswer"],$question["secondIncorrectAnswer"]);
+shuffle($answers);
 
 /*
     If the server request was of type POST

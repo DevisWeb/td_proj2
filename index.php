@@ -1,8 +1,8 @@
 <?php 
 include("inc/quiz.php"); 
-/*echo "<pre>";
-var_dump($questions);
-echo "</pre>";*/
+echo "<pre>";
+var_dump($answers);
+echo "</pre>";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,12 +17,15 @@ echo "</pre>";*/
     <div class="container">
         <div id="quiz-box">
             <p class="breadcrumbs">Question # of #</p>
-            <p class="quiz">What is 54 + 71?</p>
+            <p class="quiz">What is <?php echo $questions[$index]["leftAdder"] . " + " . $questions[$index]["rightAdder"] ;?> ?</p>
             <form action="index.php" method="post">
-                <input type="hidden" name="id" value="0" />
-                <input type="submit" class="btn" name="answer" value="135" />
-                <input type="submit" class="btn" name="answer" value="125" />
-                <input type="submit" class="btn" name="answer" value="115" />
+                <input type="hidden" name="id" value="<?php echo $index; ?>" />
+                <?php foreach($answers as $answer){
+                    echo "<input type='submit' class='btn' name='answer' value='" . $answer . "'/>";
+                }
+                ?>
+                <!--<input type="submit" class="btn" name="answer" value="" />
+                <input type="submit" class="btn" name="answer" value="" /> -->
             </form>
         </div>
     </div>
