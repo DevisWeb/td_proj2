@@ -1,7 +1,9 @@
 <?php
+
 // Start the session
 
 // Include questions from the questions.php file
+include("inc/questions.php");
 
 // Make a variable to hold the total number of questions to ask
 

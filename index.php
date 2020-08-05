@@ -1,3 +1,9 @@
+<?php 
+include("inc/quiz.php"); 
+echo "<pre>";
+var_dump($questions);
+echo "</pre>";
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
