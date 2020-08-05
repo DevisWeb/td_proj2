@@ -3,7 +3,7 @@
 // Start the session
 
 // Include questions from the questions.php file
-include("inc/questions.php");
+include("questions.php");
 
 // Make a variable to hold the total number of questions to ask
 
@@ -12,9 +12,12 @@ include("inc/questions.php");
 // Make a variable to determine if the score will be shown or not. Set it to false.
 
 // Make a variable to hold a random index. Assign null to it.
-
+$index=2;
 // Make a variable to hold the current question. Assign null to it.
-
+$question=$questions[$index];
+echo "<pre>";
+var_dump($question);
+echo "</pre>";
 
 /*
     If the server request was of type POST
