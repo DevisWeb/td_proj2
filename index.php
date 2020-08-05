@@ -1,7 +1,7 @@
 <?php 
 include("inc/quiz.php"); 
 echo "<pre>";
-var_dump($answers);
+//var_dump($answers);
 echo "</pre>";
 ?>
 <!DOCTYPE html>
@@ -20,12 +20,15 @@ echo "</pre>";
             <p class="quiz">What is <?php echo $questions[$index]["leftAdder"] . " + " . $questions[$index]["rightAdder"] ;?> ?</p>
             <form action="index.php" method="post">
                 <input type="hidden" name="id" value="<?php echo $index; ?>" />
+                <!-- display randomized answers - Variant 1: --> 
                 <?php foreach($answers as $answer){
                     echo "<input type='submit' class='btn' name='answer' value='" . $answer . "'/>";
                 }
                 ?>
-                <!--<input type="submit" class="btn" name="answer" value="" />
-                <input type="submit" class="btn" name="answer" value="" /> -->
+                <!-- display randomized answers - Variant 2 - suggested in study-guide: -->
+                <input type="submit" class="btn" name="answer" value="<?php echo $answers[0]; ?>" />
+                <input type="submit" class="btn" name="answer" value="<?php echo $answers[1]; ?>" />
+                <input type="submit" class="btn" name="answer" value="<?php echo $answers[2]; ?>" />
             </form>
         </div>
     </div>
