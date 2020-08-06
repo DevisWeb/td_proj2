@@ -1,5 +1,4 @@
 <?php
-
 // Start the session
 
 // Include questions from the questions.php file
@@ -8,29 +7,38 @@ include("questions.php");
 // Make a variable to hold the total number of questions to ask
 
 // Make a variable to hold the toast message and set it to an empty string
-
+$toast = null;
 // Make a variable to determine if the score will be shown or not. Set it to false.
 
 // Make a variable to hold a random index. Assign null to it.
-$index=2;
+$index = 2;
 // Make a variable to hold the current question. Assign null to it.
-$question=$questions[$index];
+$question = $questions[$index];
 echo "<pre>"; 
 // var_dump($question);
 echo "</pre>";
 
-$answers=array($question["correctAnswer"],$question["firstIncorrectAnswer"],$question["secondIncorrectAnswer"]);
+$answers = array($question["correctAnswer"],$question["firstIncorrectAnswer"],$question["secondIncorrectAnswer"]);
 shuffle($answers);
 
-/*
-    If the server request was of type POST
-        Check if the user's answer was equal to the correct answer.
-        If it was correct:
-            1. Assign a congratulutory string to the toast variable
-            2. Ancrement the session variable that holds the total number correct by one.
-        Otherwise:
-            1. Assign a bummer message to the toast variable.
+/* nested if-statement:
+        check if server request was “POST”
+        if so:
+            check if $_POST[‘answer’] is equal to $questions[$_POST[‘index’]][‘correctAnswer’]
+                - [x] assign congrats to $toast
+                - [] Ancrement the session variable that holds the total number correct by one.
+            else
+                - set $toast a bummer message
 */
+if($_SERVER['REQUEST_METHOD'] =='POST'){
+    if($_POST['answer'] == $questions[$_POST['id']]['correctAnswer']){
+        $toast = "Well done! That’s correct.";
+    } else {
+        $toast = "Bummer! Try again.";
+    }
+    echo "method is 'POST' ";
+}
+
 
 /*
     Check if a session variable has ever been set/created to hold the indexes of questions already asked.
