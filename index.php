@@ -25,20 +25,20 @@ echo "</pre>";
         }
       
         ?>
-            <p class="breadcrumbs">Question # of #</p>
+            <p class="breadcrumbs">Question #<?php //echo $countQuestions; ?> of <?php echo $totalQuestions; ?></p>
             <p class="quiz">What is <?php echo $questions[$index]["leftAdder"] . " + " . $questions[$index]["rightAdder"] ;?> ?</p>
             <form action="index.php" method="post">
                 <input type="hidden" name="id" value="<?php echo $index; ?>" />
                 <!-- display randomized answers - Variant 1: --> 
                 <?php 
-                //foreach($answers as $answer){
-                   // echo "<input type='submit' class='btn' name='answer' value='" . $answer . "'/>";
-                //}
+                foreach($answers as $answer){
+                   echo "<input type='submit' class='btn' name='answer' value='" . $answer . "'/>";
+                }
                 ?>
                 <!-- display randomized answers - Variant 2 - suggested in study-guide: -->
-                <input type="submit" class="btn" name="answer" value="<?php echo $answers[0]; ?>" />
+                <!-- <input type="submit" class="btn" name="answer" value="<?php echo $answers[0]; ?>" />
                 <input type="submit" class="btn" name="answer" value="<?php echo $answers[1]; ?>" />
-                <input type="submit" class="btn" name="answer" value="<?php echo $answers[2]; ?>" />
+                <input type="submit" class="btn" name="answer" value="<?php echo $answers[2]; ?>" /> -->
                
             </form>
             
