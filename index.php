@@ -56,6 +56,8 @@ echo "<pre>";
     var_dump($_POST["id"]);
 echo "</pre>"; 
 */  
+echo "This is question $countQuestions with INDEX " . $index . "<br>";
+echo "Counted " . $_SESSION['totalCorrect'] . " CORRECT answers";
 echo "<pre>";
 var_dump(($_SESSION)['used_indexes']);
 // print_r($_SESSION);

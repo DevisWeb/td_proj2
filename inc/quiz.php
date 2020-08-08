@@ -35,6 +35,7 @@ shuffle($answers);
 if($_SERVER['REQUEST_METHOD'] =='POST'){
     if($_POST['answer'] == $questions[$_POST['id']]['correctAnswer']){
         $toast = "Well done! That’s correct.";
+        $_SESSION['totalCorrect']++;
     } else {
         $toast = "Bummer! Try again.";
     }
@@ -48,13 +49,14 @@ if($_SERVER['REQUEST_METHOD'] =='POST'){
 */
 
 if(!isset($_SESSION['used_indexes'])){
-    $_SESSION['used_indexes'] = [];
+    $_SESSION['used_indexes'] = []; // create empty array to hold the indexes of questions already asked
+    $_SESSION['totalCorrect']= 0;   // will be incremented when user gets a question correct
     $show_score = false;
 } 
 // $_SESSION['used_indexes'][] = $index;
 array_push($_SESSION['used_indexes'], $index);
 $countQuestions = count($_SESSION['used_indexes']);
-echo "This is question $countQuestions with INDEX " . $index;
+
 
 
 /*
@@ -78,3 +80,5 @@ echo "This is question $countQuestions with INDEX " . $index;
             firstIncorrectAnswer, and secondIncorrect answer from the variable in step e.
         h. Shuffle the array from step g.
 */
+
+// session_destroy(); 
