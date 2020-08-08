@@ -1,5 +1,6 @@
 <?php
 // Start the session
+session_start();
 
 // Include questions from the questions.php file
 include("questions.php");
@@ -9,13 +10,13 @@ $totalQuestions=count($questions);
 // Make a variable to hold the toast message and set it to an empty string
 $toast = null;
 // Make a variable to determine if the score will be shown or not. Set it to false.
-
+$show_score = false;
 // Make a variable to hold a random index. Assign null to it.
 $index = array_rand($questions); // rand(0, count($questions) - 1);
 // Make a variable to hold the current question. Assign null to it.
 $question = $questions[$index];
 echo "<pre>"; 
-// var_dump($question);
+//var_dump($question);
 echo "</pre>";
 
 $answers = array($question["correctAnswer"],$question["firstIncorrectAnswer"],$question["secondIncorrectAnswer"]);
@@ -30,20 +31,14 @@ shuffle($answers);
             else
                 - set $toast a bummer message
 */
-// ToDo:
-// $countQuestions //needs session;
-// if($_SERVER['REQUEST_METHOD'] =='POST' && $countQuestions < $totalQuestions){
-if($_SERVER['REQUEST_METHOD'] =='POST'){
 
-    // $countQuestions;
+if($_SERVER['REQUEST_METHOD'] =='POST'){
     if($_POST['answer'] == $questions[$_POST['id']]['correctAnswer']){
         $toast = "Well done! That’s correct.";
     } else {
         $toast = "Bummer! Try again.";
     }
-    echo "method is 'POST' ";
 }
-
 
 /*
     Check if a session variable has ever been set/created to hold the indexes of questions already asked.
@@ -51,6 +46,15 @@ if($_SERVER['REQUEST_METHOD'] =='POST'){
         1. Create a session variable to hold used indexes and initialize it to an empty array.
         2. Set the show score variable to false.
 */
+
+if(!isset($_SESSION['used_indexes'])){
+    $_SESSION['used_indexes'] = [];
+    $show_score = false;
+} 
+// $_SESSION['used_indexes'][] = $index;
+array_push($_SESSION['used_indexes'], $index);
+$countQuestions = count($_SESSION['used_indexes']);
+echo "This is question $countQuestions with INDEX " . $index;
 
 
 /*
