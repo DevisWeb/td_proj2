@@ -29,7 +29,7 @@ if($_SERVER['REQUEST_METHOD'] =='POST'){
         $_SESSION['totalCorrect']+=1; // ++;
         echo $show_score;
     } else {
-        $toast = "Bummer! Try again.";
+        $toast = "Bummer! The answer was not correct.";
     }
 } 
 
@@ -57,7 +57,8 @@ $countQuestions = count($_SESSION['used_indexes']);
 If ($countQuestions == $totalQuestions) {
     $_SESSION['used_indexes'] = [];
     $show_score = true;
-    $nextQuiz = "GAME OVER &gt; NextQuiz"; // (ToDo addlink)
+    $game_over = "game over"; 
+    $next_quiz= "+++ Next Quiz +++"; // (ToDo addlink)
 } Else {
     // else set $show_score to false
         // if the game is being reset and used_indexes is now equal to 0
@@ -73,7 +74,7 @@ If ($countQuestions == $totalQuestions) {
     // Continue for as long as number generated is found in the session variable that holds used indexes.
     // do while ..
     do {
-        $index = rand(0, count($questions) - 1); // array_rand($questions); // 
+        $index = rand(0, count($questions) - 1); // array_rand($questions); 
     } while (in_array($index, $_SESSION['used_indexes']));
 
     // Move the $question variable assignment just below $index

@@ -18,7 +18,7 @@ echo "</pre>";
 </head>
 <body>
     <div class="container">
-        <div id="quiz-box">
+        <div <?php if ($show_score === true) {echo 'id="score-box" ';} else {echo 'id="quiz-box" ';} ?>>
         <?php if (!empty($toast)){
             echo "<p>" . $toast . "</p>";
             }
@@ -39,17 +39,22 @@ echo "</pre>";
                 <input type="submit" class="btn" name="answer" value="<?php // echo $answers[1]; ?>" />
                 <input type="submit" class="btn" name="answer" value="<?php // echo $answers[2]; ?>" /> -->
                
-            </form>
+                </form>
             <?php
             }
-
+          
             if ($show_score === true) {
                 echo "<p> You got ". $_SESSION['totalCorrect'] . " of " . $totalQuestions . " correct.<br></p>";
-                echo "<p><b>" . $nextQuiz . "</b></p>";
+                echo "<p class='quiz'><b>" . strtoupper($game_over) . " &gt; </b>" ;?>
+            <input type="submit" class="btn" name="nextquiz" value="<?php  echo strtoupper($next_quiz); ?>" 
+                onClick="document.location.href='index.php'" />    
+              <?php echo "</p>";
+                
             }
-           var_dump($show_score);
+           //var_dump($show_score);
            
             ?>
+ 
         </div>
     </div>
 </body>
