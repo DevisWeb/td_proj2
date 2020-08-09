@@ -1,5 +1,6 @@
 <?php
 // Start the session
+//session_start();
 session_start();
 
 // Include questions from the questions.php file
@@ -11,16 +12,13 @@ $totalQuestions=count($questions);
 $toast = null;
 // Make a variable to determine if the score will be shown or not. Set it to false.
 $show_score = false;
-// Make a variable to hold a random index. Assign null to it.
-$index = array_rand($questions); // rand(0, count($questions) - 1);
-// Make a variable to hold the current question. Assign null to it.
-$question = $questions[$index];
+
 echo "<pre>"; 
 //var_dump($question);
 echo "</pre>";
-
-$answers = array($question["correctAnswer"],$question["firstIncorrectAnswer"],$question["secondIncorrectAnswer"]);
-shuffle($answers);
+// moved:
+//$answers = array($question["correctAnswer"],$question["firstIncorrectAnswer"],$question["secondIncorrectAnswer"]);
+// shuffle($answers);
 
 /* nested if-statement:
         check if server request was “POST”
@@ -35,11 +33,12 @@ shuffle($answers);
 if($_SERVER['REQUEST_METHOD'] =='POST'){
     if($_POST['answer'] == $questions[$_POST['id']]['correctAnswer']){
         $toast = "Well done! That’s correct.";
-        $_SESSION['totalCorrect']++;
+        $_SESSION['totalCorrect']+=1; // ++;
+        echo $show_score;
     } else {
         $toast = "Bummer! Try again.";
     }
-}
+} 
 
 /*
     Check if a session variable has ever been set/created to hold the indexes of questions already asked.
@@ -54,25 +53,55 @@ if(!isset($_SESSION['used_indexes'])){
     $show_score = false;
 } 
 // $_SESSION['used_indexes'][] = $index;
-array_push($_SESSION['used_indexes'], $index);
+// moved:
+// array_push($_SESSION['used_indexes'], $index);
+// $countQuestions = count($_SESSION['used_indexes']);
+
+// if ten questions asked reset session var "used_indexes" back to empty array
+// set $show_score to true to display the score (Game Over)
 $countQuestions = count($_SESSION['used_indexes']);
 
+If ($countQuestions == $totalQuestions) {
+    $_SESSION['used_indexes'] = [];
+    $show_score = true;
+    $nextQuiz = "GAME OVER &gt; NextQuiz"; // (ToDo addlink)
+} Else {
+    // else set $show_score to false
+        // if the game is being reset and used_indexes is now equal to 0
+                // set the "totalCorrect" to 0
+                // set $toast to an empty string
+    $show_score = false;
+    if (count($_SESSION['used_indexes']) == 0) {
+        $_SESSION['totalCorrect']= 0; 
+        $toast = "";
+        
+    }
+    // Outside nested if, inside the else, MOVE $index declaration with random number
+    $index = rand(0, count($questions) - 1);     // array_rand($questions); // 
 
+     // ToDo
+     // Continue doing this
+     // for as long as the number generated is found in the session variable that holds used indexes.
+     // do while ..
 
-/*
-  If the number of used indexes in our session variable is equal to the total number of questions
-  to be asked:
-        1.  Reset the session variable for used indexes to an empty array 
-        2.  Set the show score variable to true.
+     // Move the $question variable assignment just below $index
+     $question = $questions[$index];
+    // Move array_push of $index below $question variable to push the $index into "used_indexes"
+     array_push($_SESSION['used_indexes'], $index);
+     $countQuestions = count($_SESSION['used_indexes']);
+     $answers = array($question["correctAnswer"],$question["firstIncorrectAnswer"],$question["secondIncorrectAnswer"]);
+     shuffle($answers);
+    
+    // ##################################################################### 
+    /*echo "This is question ". ($countQuestions+1) . " with INDEX " . $index . "<br>";
+    echo "Counted " . $_SESSION['totalCorrect'] . " CORRECT answers";
+    */
+      
+    }      
 
-  Else:
-    1. Set the show score variable to false 
-    2. If it's the first question of the round:
-        a. Set a session variable that holds the total correct to 0. 
-        b. Set the toast variable to an empty string.
-        c. Assign a random number to a variable to hold an index. Continue doing this
-            for as long as the number generated is found in the session variable that holds used indexes.
-        d. Add the random number generated to the used indexes session variable.      
+    
+ 
+    /*      
         e. Set the individual question variable to be a question from the questions array and use the index
             stored in the variable in step c as the index.
         f. Create a variable to hold the number of items in the session variable that holds used indexes
@@ -80,5 +109,5 @@ $countQuestions = count($_SESSION['used_indexes']);
             firstIncorrectAnswer, and secondIncorrect answer from the variable in step e.
         h. Shuffle the array from step g.
 */
-
 // session_destroy(); 
+

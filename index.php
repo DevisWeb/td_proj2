@@ -22,8 +22,10 @@ echo "</pre>";
         <?php if (!empty($toast)){
             echo "<p>" . $toast . "</p>";
             }
+            if ($show_score === false) {
             ?> 
-            <p class="breadcrumbs">Question <?php echo $countQuestions; ?> of <?php echo $totalQuestions; ?></p>
+            <p class="breadcrumbs">This is Question <?php echo $countQuestions; ?> of <?php echo $totalQuestions; ?></p>
+
             <p class="quiz">What is <?php echo $questions[$index]["leftAdder"] . " + " . $questions[$index]["rightAdder"] ;?> ?</p>
             <form action="index.php" method="post">
                 <input type="hidden" name="id" value="<?php echo $index; ?>" />
@@ -38,7 +40,16 @@ echo "</pre>";
                 <input type="submit" class="btn" name="answer" value="<?php // echo $answers[2]; ?>" /> -->
                
             </form>
-            
+            <?php
+            }
+
+            if ($show_score === true) {
+                echo "<p> You got ". $_SESSION['totalCorrect'] . " of " . $totalQuestions . " correct.<br></p>";
+                echo "<p><b>" . $nextQuiz . "</b></p>";
+            }
+           var_dump($show_score);
+           
+            ?>
         </div>
     </div>
 </body>
@@ -56,10 +67,11 @@ echo "<pre>";
     var_dump($_POST["id"]);
 echo "</pre>"; 
 */  
-echo "This is question $countQuestions with INDEX " . $index . "<br>";
-echo "Counted " . $_SESSION['totalCorrect'] . " CORRECT answers";
+
+// echo "This is question ". ($countQuestions+1) . " with INDEX " . $index . "<br>";
+// echo "Counted " . $_SESSION['totalCorrect'] . " CORRECT answers";
 echo "<pre>";
-var_dump(($_SESSION)['used_indexes']);
+ var_dump(($_SESSION)['used_indexes']);
 // print_r($_SESSION);
 echo "</pre>";
 
