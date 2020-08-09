@@ -70,9 +70,12 @@ echo "</pre>";
 
 // echo "This is question ". ($countQuestions+1) . " with INDEX " . $index . "<br>";
 // echo "Counted " . $_SESSION['totalCorrect'] . " CORRECT answers";
+
+// check array for dublicate numbers:
+$arr = ($_SESSION)['used_indexes'];
+asort($arr);
 echo "<pre>";
- var_dump(($_SESSION)['used_indexes']);
-// print_r($_SESSION);
+    var_dump($arr);
 echo "</pre>";
 
 ?>

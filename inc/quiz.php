@@ -1,6 +1,5 @@
 <?php
 // Start the session
-//session_start();
 session_start();
 
 // Include questions from the questions.php file
@@ -16,18 +15,12 @@ $show_score = false;
 echo "<pre>"; 
 //var_dump($question);
 echo "</pre>";
-// moved:
-//$answers = array($question["correctAnswer"],$question["firstIncorrectAnswer"],$question["secondIncorrectAnswer"]);
-// shuffle($answers);
 
-/* nested if-statement:
-        check if server request was “POST”
-        if so:
-            check if $_POST[‘answer’] is equal to $questions[$_POST[‘index’]][‘correctAnswer’]
+/* nested if-statement: check if server request was “POST”
+        if so: check if $_POST[‘answer’] is equal to $questions[$_POST[‘index’]][‘correctAnswer’]
                 - [x] assign congrats to $toast
-                - [] ToDo: Ancrement the session variable that holds the total number correct by one.
-            else
-                - set $toast a bummer message
+                - [x] ToDo: Increment the session variable that holds the total number correct by one.
+        else set $toast a bummer message
 */
 
 if($_SERVER['REQUEST_METHOD'] =='POST'){
@@ -77,14 +70,13 @@ If ($countQuestions == $totalQuestions) {
         
     }
     // Outside nested if, inside the else, MOVE $index declaration with random number
-    $index = rand(0, count($questions) - 1);     // array_rand($questions); // 
+    // Continue for as long as number generated is found in the session variable that holds used indexes.
+    // do while ..
+    do {
+        $index = rand(0, count($questions) - 1); // array_rand($questions); // 
+    } while (in_array($index, $_SESSION['used_indexes']));
 
-     // ToDo
-     // Continue doing this
-     // for as long as the number generated is found in the session variable that holds used indexes.
-     // do while ..
-
-     // Move the $question variable assignment just below $index
+    // Move the $question variable assignment just below $index
      $question = $questions[$index];
     // Move array_push of $index below $question variable to push the $index into "used_indexes"
      array_push($_SESSION['used_indexes'], $index);
@@ -93,21 +85,10 @@ If ($countQuestions == $totalQuestions) {
      shuffle($answers);
     
     // ##################################################################### 
+
     /*echo "This is question ". ($countQuestions+1) . " with INDEX " . $index . "<br>";
     echo "Counted " . $_SESSION['totalCorrect'] . " CORRECT answers";
-    */
-      
+    */      
     }      
-
-    
- 
-    /*      
-        e. Set the individual question variable to be a question from the questions array and use the index
-            stored in the variable in step c as the index.
-        f. Create a variable to hold the number of items in the session variable that holds used indexes
-        g. Create a new variable that holds an array. The array should contain the correctAnswer,
-            firstIncorrectAnswer, and secondIncorrect answer from the variable in step e.
-        h. Shuffle the array from step g.
-*/
-// session_destroy(); 
+     // session_destroy(); 
 
