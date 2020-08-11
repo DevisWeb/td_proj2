@@ -42,21 +42,39 @@ echo "</pre>";
                 </form>
             <?php
             }
+
+
+
           
-            if ($show_score === true) {
-                echo "<p> You got ". $_SESSION['totalCorrect'] . " of " . $totalQuestions . " correct.<br></p>";
-                echo "<p class='quiz'><b>" . strtoupper($game_over) . " &gt; </b>" ;?>
-            <input type="submit" class="btn" name="nextquiz" value="<?php  echo strtoupper($next_quiz); ?>" 
-                onClick="document.location.href='index.php'" />    
-              <?php echo "</p>";
-                
-            }
-           //var_dump($show_score);
-           
-            ?>
- 
+        if ($show_score === true) {
+               
+            echo "<p class='quiz'><span class='game-over'>" . strtoupper($game_over) . "</span></p>"; 
+            echo "<p> You got ". $_SESSION['totalCorrect'] . " of " . $totalQuestions . " correct.<br><br></p>";
+            
+            // got to next quiz:?>
+            <p class=''><button type="submit" class="btn next-quiz" name="nextquiz" value="" 
+            onClick="document.location.href='index.php'" ><?php  echo strtoupper($next_quiz); ?></button>    </p>
+            
+        <?php //echo "</p>";   
+        } //var_dump($show_score);
+        ?>
+
         </div>
-    </div>
+        <!-- <div class="container"> -->
+        <?php  
+        // ToDo CSS 2 display numbers on (rotated/rotating) cards + shuffle cardnumbers
+        // if ($show_score === true) { 
+        ?>
+        
+          <!--  <p> 
+                <div id="card1" class="card_box">1</div>
+                <div id="card2" class="card_box">2</div>
+                <div id="card3" class="card_box card_box_right">3</div>
+                <div id="card4" class="card_box card_box_right">4</div>
+            </p>
+        </div> -->
+        <?php // } ?>
+    <!-- </div> -->
 </body>
 </html>
 
