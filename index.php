@@ -1,9 +1,8 @@
 <?php 
 include("inc/quiz.php"); 
-echo "<pre>";
+// echo "<pre>";
 //var_dump($answers);
-
-echo "</pre>";
+//echo "</pre>";
 
 ?>
 
@@ -29,7 +28,7 @@ echo "</pre>";
             <p class="quiz">What is <?php echo $questions[$index]["leftAdder"] . " + " . $questions[$index]["rightAdder"] ;?> ?</p>
             <form action="index.php" method="post">
                 <input type="hidden" name="id" value="<?php echo $index; ?>" />
-                <!-- display randomized answers - Variant 1: --> 
+                <!-- display randomized answers - Variant 1 - shorter version: --> 
                 <?php   foreach($answers as $answer){
                             echo "<input type='submit' class='btn' name='answer' value='" . $answer . "'/>";
                         } 
@@ -60,22 +59,65 @@ echo "</pre>";
         ?>
 
         </div>
-        <!-- <div class="container"> -->
+   
+        <div class="">
         <?php  
         // ToDo CSS 2 display numbers on (rotated/rotating) cards + shuffle cardnumbers
         // if ($show_score === true) { 
         ?>
-        
           <!--  <p> 
                 <div id="card1" class="card_box">1</div>
                 <div id="card2" class="card_box">2</div>
                 <div id="card3" class="card_box card_box_right">3</div>
                 <div id="card4" class="card_box card_box_right">4</div>
-            </p>
-        </div> -->
+            </p> -->
+        </div>
         <?php // } ?>
-    <!-- </div> -->
+    </div> 
+
+    <!-- Notice: all var_dumps in project are for testing only, during deployment and evaluating process -> staging;
+        would be removed completely for production environment --> 
+    
+    <!-- <div style="top: 50%; position: absolute">
+        <table border="1"> 
+                <tr><td colspan="2">Check var_dumps: </td></tr>
+                <tr><td><?php echo "used indexes in CHRONOLOGICAL order:__ <br>";
+                    $arr = ($_SESSION)['used_indexes'];
+                    //asort($arr);
+                    echo "<pre>";
+                        var_dump($arr);
+                    echo "</pre>";
+                ?></td>
+                <td><?php
+                    echo "used indexes in NUMERICAL order:__ <br>";
+                    echo "to check that used questions indexes of session array are unique__<br>";
+                    $arr = ($_SESSION)['used_indexes'];
+                    asort($arr);
+                    echo "<pre>";
+                        var_dump($arr);
+                    echo "</pre>";
+                ?></td></tr>
+                <tr><td><?php                
+                    if(isset($_SESSION["questions"])) {
+                    echo 'var_dump of ($_SESSION["questions"]: <br>';
+                    echo "<pre>";
+                    var_dump($_SESSION["questions"] );
+                    echo "</pre>"; 
+                    } else {
+                        echo "Game over --> session-array is unset for next quiz session to create new random session-array";
+                    }
+                ?></td><td><?php
+                    echo 'var_dump of ($questions): <br>';
+                    echo 'to make sure that array of $question == session-array__<br>';
+                    echo "<pre>";
+                    var_dump($questions);
+                    echo "</pre>";
+                ?></td></tr>
+        </table>
+    </div> -->
+    
 </body>
+
 </html>
 
 <?php
@@ -95,10 +137,11 @@ echo "</pre>";
 // echo "Counted " . $_SESSION['totalCorrect'] . " CORRECT answers";
 
 // check array for dublicate numbers:
+    /*
 $arr = ($_SESSION)['used_indexes'];
-asort($arr);
+//asort($arr);
 echo "<pre>";
     var_dump($arr);
 echo "</pre>";
-
+*/
 ?>
