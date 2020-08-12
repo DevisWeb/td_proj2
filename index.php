@@ -18,7 +18,7 @@ include("inc/quiz.php");
 <body>
     <div class="container">
         <div <?php if ($show_score === true) {echo 'id="score-box" ';} else {echo 'id="quiz-box" ';} ?>>
-        <?php if (!empty($toast)){
+        <?php if (!empty($toast) && (!$show_score)){
             echo "<p>" . $toast . "</p>";
             }
             if ($show_score === false) {
@@ -42,17 +42,14 @@ include("inc/quiz.php");
             <?php
             }
 
-
-
-          
         if ($show_score === true) {
                
             echo "<p class='quiz'><span class='game-over'>" . strtoupper($game_over) . "</span></p>"; 
-            echo "<p> You got ". $_SESSION['totalCorrect'] . " of " . $totalQuestions . " correct.<br><br></p>";
+            echo "<p><b> You got ". $_SESSION['totalCorrect'] . " of " . $totalQuestions . " correct.<b><br><br></p>";
             
-            // got to next quiz:?>
+            // go  to next quiz:?>
             <p class=''><button type="submit" class="btn next-quiz" name="nextquiz" value="" 
-            onClick="document.location.href='index.php'" ><?php  echo strtoupper($next_quiz); ?></button>    </p>
+            onClick="document.location.href='index.php'" ><?php  echo strtoupper($next_quiz); ?></button></p>
             
         <?php //echo "</p>";   
         } //var_dump($show_score);

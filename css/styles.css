@@ -26,7 +26,7 @@ body {
   width: 80%;
   line-height: .5;
   background-color: #69C673;
-  padding: 10px;
+  padding: 25px 10px 10px;
   text-align: center;
 }
 
@@ -36,6 +36,32 @@ body {
   line-height: 1.1;
   position: relative;
   margin: 0;
+}
+
+.answer-right {
+  color: #32CD32;
+  font-weight: bold;
+}
+
+.answer-right:before {
+  content: " * * *  ";
+}
+
+.answer-right:after {
+  content: " \01F354";
+}
+
+.answer-wrong {
+  color: #bd1816;
+  font-weight: bold;
+}
+
+.answer-wrong:before {
+  content: "";
+}
+
+.answer-wrong:after {
+  content: "\1F61F";
 }
 
 .game-over {

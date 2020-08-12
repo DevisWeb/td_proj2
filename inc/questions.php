@@ -52,7 +52,8 @@ session_start(); // see first note in quiz.php
                 if((($leftAdder == $question["leftAdder"]) && ($rightAdder == $question["rightAdder"])) 
                     || (($leftAdder == $question["rightAdder"]) 
                         && ($rightAdder == $question["leftAdder"]) 
-                        && (($leftAdder+$rightAdder)==$question["correctAnswer"]))) {
+                        && (($leftAdder+$rightAdder)==$question["correctAnswer"]))) 
+                {
                     $dublicates = true;
                     continue;  
                 } 

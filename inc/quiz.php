@@ -21,11 +21,11 @@ $show_score = false;
 // --> if answer correct: increment session variable (total number correct) by one.
 if($_SERVER['REQUEST_METHOD'] =='POST'){
     if($_POST['answer'] == $questions[$_POST['id']]['correctAnswer']){
-        $toast = "Well done! That’s correct.";
+        $toast = "<span class='answer-right'>Well done! That’s correct.</span>";
         $_SESSION['totalCorrect']+=1; // ++;
         echo $show_score;
     } else {
-        $toast = "Bummer! The answer was not correct.";
+        $toast = "<span class='answer-wrong'>Bummer! The answer was not correct.</span>";
     }
 } 
 
