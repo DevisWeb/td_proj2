@@ -81,14 +81,18 @@ include("inc/quiz.php");
     <!-- <div style="top: 50%; position: absolute">
         <table border="1"> 
                 <tr><td colspan="2">Check var_dumps: </td></tr>
-                <tr><td><?php echo "used indexes in CHRONOLOGICAL order:__ <br>";
+                <tr><td><?php 
+                /*    
+                    echo "used indexes in CHRONOLOGICAL order:__ <br>";
                     $arr = ($_SESSION)['used_indexes'];
                     //asort($arr);
                     echo "<pre>";
                         var_dump($arr);
                     echo "</pre>";
+                */
                 ?></td>
                 <td><?php
+                /*
                     echo "used indexes in NUMERICAL order:__ <br>";
                     echo "to check that used questions indexes of session array are unique__<br>";
                     $arr = ($_SESSION)['used_indexes'];
@@ -96,8 +100,10 @@ include("inc/quiz.php");
                     echo "<pre>";
                         var_dump($arr);
                     echo "</pre>";
+                */
                 ?></td></tr>
                 <tr><td><?php                
+                /*  
                     if(isset($_SESSION["questions"])) {
                     echo 'var_dump of ($_SESSION["questions"]: <br>';
                     echo "<pre>";
@@ -106,12 +112,15 @@ include("inc/quiz.php");
                     } else {
                         echo "Game over --> session-array is unset for next quiz session to create new random session-array";
                     }
+                */
                 ?></td><td><?php
+                /*  
                     echo 'var_dump of ($questions): <br>';
                     echo 'to make sure that array of $question == session-array__<br>';
                     echo "<pre>";
                     var_dump($questions);
-                    echo "</pre>";
+                    echo "</pre>"; 
+                */
                 ?></td></tr>
         </table>
     </div> -->
