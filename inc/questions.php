@@ -28,16 +28,11 @@ session_start(); // see first note in quiz.php
 
     // declare range values;
     $rangeIncorrect=10; 
-    $minAdder=1;
+    $minAdder=10;
     $maxAdder=100;
     
     // ###########################################################################
-    /*$questions[$i]['leftAdder'] = rand(1, 5);
-    $questions[$i]['rightAdder'] = rand(1, 5);
-    $questions[$i]['correctAnswer'] = $questions[$i]['leftAdder'] + $questions[$i]['rightAdder'];
-    $questions[$i]['firstIncorrectAnswer'] = 2;
-    $questions[$i]['secondIncorrectAnswer'] = 2;*/
-    
+        
     // declare and calculate values randomly generated for array of 10 questions (avoid dublicates):
     for($i=0; $i < 10; $i++){ 
         // - [x] questions should not repeat within array, also not in reverse order of left and rightAdder 
